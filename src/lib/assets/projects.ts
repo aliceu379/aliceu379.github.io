@@ -16,6 +16,10 @@ function linkCodeberg(repoName: string): string {
 	return "https://codeberg.org/RothCu/".concat(repoName)
 }
 
+function linkGithub(repoName: string): string {
+	return "https://github.com/aliceu379/".concat(repoName)
+}
+
 export function normalizeProject(project: Partial<Project>): Project {
 	return {
 		name: project.name ?? "Unnamed Project",
@@ -35,5 +39,10 @@ export const projectInformation: Array<Partial<Project>> = [
 		href: linkCodeberg("16bit-computer"),
 		img: linkImage("16bit_computer.png"),
 		alt: "A circuit of the 16 bit computer",
+	},
+	{
+		name: "Neural Network in C",
+		description: "[NO LONGER IN DEVELOPMENT] A neural network implementation from scratch, written in C",
+		href: linkGithub("neuralnet"),
 	},
 ];
