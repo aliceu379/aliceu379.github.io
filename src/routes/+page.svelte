@@ -11,8 +11,14 @@
 	<div class="h-full w-full flex flex-row">
 		<!-- Name and Information -->
 		<div class="flex-1 prose prose-p:m-0 m-16 w-lg">
-			<img src={information.profilePicture} alt="Profile" width={256} height={256} class="rounded-3xl"/>
-			<h1>{information.name}</h1>
+			<div class="not-prose">
+				<div class="avatar">
+					<div class="w-56 rounded-3xl">
+						<img src={information.profilePicture} alt="Profile"/>
+					</div>
+				</div>
+			</div>
+			<h1 class="mt-8">{information.name}</h1>
 
 			{#each information.links as link }
 				{#if link.isURL}
