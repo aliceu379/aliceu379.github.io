@@ -2,6 +2,7 @@
 	import ProjectCard from "$lib/components/ProjectCard.svelte";
 
 	import {normalizeProject, projectInformation} from "$lib/assets/projects";
+	import {information} from "$lib/assets/information";
 
 	const normalizedProjectInformation = projectInformation.map((project) => normalizeProject(project))
 </script>
@@ -9,14 +10,21 @@
 <main class="h-full w-full">
 	<div class="h-full w-full flex flex-row">
 		<!-- Name and Information -->
-		<div class="flex-1 prose prose-h2:m-0 m-16 w-lg">
-			<img src="/img/NoImage.png" alt="Profile" class="rounded-3xl"/>
-			<h1>Name goes here</h1>
-			<h2 class="m-0">Email goes here</h2>
+		<div class="flex-1 prose prose-p:m-0 m-16 w-lg">
+			<img src={information.profilePicture} alt="Profile" width={256} height={256} class="rounded-3xl"/>
+			<h1>{information.name}</h1>
+
+			{#each information.links as link }
+				{#if link.isURL}
+					<p>{link.name}: <a href={link.href}>{link.href}</a></p>
+				{:else}
+					<p>{link.name}: {link.href}</p>
+				{/if}
+			{/each}
 
 			<div class="divider"></div>
 
-			<p>something here i guess</p>
+			<p>{information.description}</p>
 		</div>
 
 		<div class="flex-none divider divider-horizontal m-0"></div>
