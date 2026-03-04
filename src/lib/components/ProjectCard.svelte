@@ -8,7 +8,7 @@
 	} = $props();
 </script>
 
-<article class="card bg-base-100 w-96 shadow-sm">
+<article class="card bg-base-100 w-64 lg:w-96 shadow-sm card-xs lg:card-md">
 	<figure>
 		<img src={img} alt={alt===""?name:alt} />
 	</figure>

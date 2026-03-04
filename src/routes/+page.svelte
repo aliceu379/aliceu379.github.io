@@ -8,47 +8,48 @@
 </script>
 
 <main class="h-full w-full">
-	<div class="h-full w-full flex flex-row">
+	<div class="h-full w-full flex flex-col lg:flex-row">
 		<!-- Name and Information -->
-		<div class="flex-1 prose prose-p:m-0 m-16 w-lg">
-			<div class="not-prose">
+		<div class="m-2 lg:m-16 flex flex-row items-center lg:flex-col lg:items-normal">
+			<div class="flex flex-col items-center">
 				<div class="avatar">
-					<div class="w-56 rounded-3xl">
+					<div class="w-24 m-4 lg:w-56 lg:m-0 rounded-3xl">
 						<img src={information.profilePicture} alt="Profile"/>
 					</div>
 				</div>
+				<h1 class="text-3xl font-bold w-min">{information.name}</h1>
 			</div>
-			<h1 class="mt-8">{information.name}</h1>
-
-			{#each information.links as link }
-				{#if link.isURL}
-					<p>{link.name}: <a href={link.href}>{link.href}</a></p>
-				{:else}
-					<p>{link.name}: {link.href}</p>
-				{/if}
-			{/each}
-
-			<div class="divider"></div>
-
-			<p>{information.description}</p>
+			<div class="h-min overflow-x-scroll">
+				{#each information.links as link }
+					<p class="text-xs lg:text-lg">{link.name}:
+					{#if link.isURL}
+						<a class="link" href={link.href}>{link.href}</a>
+					{:else}
+						{link.href}
+					{/if}
+					</p>
+				{/each}
+			</div>
 		</div>
 
-		<div class="flex-none divider divider-horizontal m-0"></div>
+		<div class="flex-none divider divider-vertical lg:divider-horizontal m-0"></div>
 
 		<!-- Projects -->
-		<div class="flex-3 flex flex-col">
-			<div class="w-full flex justify-center">
-				<h1 class="w-max text-5xl m-4"><strong>My Projects</strong></h1>
+		<div class="grow h-screen flex-none lg:h-auto flex flex-col overflow-y-scroll bg-base-300">
+			<div class="w-full flex flex-row justify-center">
+				<h1 class="w-max text-3xl lg:text-5xl font-bold m-4">My Projects</h1>
 			</div>
 
-			<div class="divider"></div>
+			<div class="divider mt-0"></div>
 
-			<div class="w-full p-4 grid grid-flow-row grid-cols-3 gap-4 overflow-y-scroll">
-				{#each normalizedProjectInformation as project }
-					<ProjectCard {...project}>
-						<p>{project.description}</p>
-					</ProjectCard>
-				{/each}
+			<div class="overflow-y-scroll">
+				<div class="p-4 justify-items-center grid grid-flow-row grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+					{#each normalizedProjectInformation as project }
+						<ProjectCard {...project}>
+							<p>{project.description}</p>
+						</ProjectCard>
+					{/each}
+				</div>
 			</div>
 		</div>
 	</div>
